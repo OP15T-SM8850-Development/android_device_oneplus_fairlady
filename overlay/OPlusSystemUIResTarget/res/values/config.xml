@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- AOD brightness is handled by the ColorOS-compatible system_server listener. -->
+    <string name="doze_brightness_sensor_type" translatable="false"></string>
+    <bool name="config_doze_use_default_brightness_on_entry">true</bool>
+
+</resources>
