@@ -271,4 +271,26 @@
         <timeMinSecs>60</timeMinSecs>          // Minimum time remaining required to switch
         </timing>                              //   HBM on for.
     </highBrightnessMode>
+    <!--
+         AOD brightness states reported by qti.sensor.lux_aod.
+         Values are HAL backlight levels and are converted through the
+         screenBrightnessMap above. The fairlady panel reaches about
+         10 nits at 0.129282 and about 50 nits at 0.280783.
+         State 0 keeps the current brightness; states 1/2 are indoor AOD
+         and states 3-7 are bright-light AOD.  The Qualcomm sensor can emit
+         all seven non-zero states on fairlady.
+    -->
+    <dozeBrightnessSensorValueToBrightness>
+        <item>-1</item>       <!-- 0: OFF / keep current -->
+        <item>0.129282</item> <!-- 1: NIGHT -->
+        <item>0.129282</item> <!-- 2: LOW -->
+        <item>0.280783</item> <!-- 3: HIGH -->
+        <item>0.280783</item> <!-- 4: SUN -->
+        <item>0.280783</item> <!-- 5: SUN -->
+        <item>0.280783</item> <!-- 6: SUN -->
+        <item>0.280783</item> <!-- 7: SUN -->
+    </dozeBrightnessSensorValueToBrightness>
+
+    <!-- Start AOD at the pre-Feature-7 software level before the panel enters DOZE. -->
+    <defaultDozeBrightness>0.113607</defaultDozeBrightness>
 </displayConfiguration>
