@@ -4,5 +4,4 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/lineage_fairlady.mk
+PRODUCT_MAKEFILES := \n    $(LOCAL_DIR)/lineage_fairlady.mk \n    $(LOCAL_DIR)/custom_fairlady.mk
