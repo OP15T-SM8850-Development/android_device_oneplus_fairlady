@@ -7,7 +7,7 @@
         "play_rate_hz": 24000
       },
       {
-        "effect_file": "/odm/etc/vibrator/809/def/effect_6.bin",
+        "effect_file": "/odm/etc/vibrator/809/def/effect_106.bin",
         "effect_id": 1,
         "play_rate_hz": 24000
       },
@@ -29,6 +29,11 @@
       {
         "effect_file": "/odm/etc/vibrator/809/def/effect_8.bin",
         "effect_id": 5,
+        "play_rate_hz": 24000
+      },
+      {
+        "effect_file": "/odm/etc/vibrator/809/def/effect_2.bin",
+        "effect_id": 33,
         "play_rate_hz": 24000
       },
       {
