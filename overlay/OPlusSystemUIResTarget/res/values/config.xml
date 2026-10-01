@@ -7,4 +7,7 @@
     <string name="doze_brightness_sensor_type" translatable="false"></string>
     <bool name="config_doze_use_default_brightness_on_entry">true</bool>
 
+    <!-- Avoid pinning the panel to 165 Hz while waiting for fingerprint authentication. -->
+    <bool name="config_request_pre_auth_refresh_rate">false</bool>
+
 </resources>
