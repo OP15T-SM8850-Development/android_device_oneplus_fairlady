@@ -9,5 +9,7 @@
 
     <!-- Avoid pinning the panel to 165 Hz while waiting for fingerprint authentication. -->
     <bool name="config_request_pre_auth_refresh_rate">false</bool>
+    <!-- Release the scanning refresh-rate request immediately, as in PixelOS. -->
+    <bool name="config_udfps_staged_refresh_rate_release">false</bool>
 
 </resources>
