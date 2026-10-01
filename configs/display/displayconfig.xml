@@ -293,4 +293,8 @@
 
     <!-- Start AOD at the pre-Feature-7 software level before the panel enters DOZE. -->
     <defaultDozeBrightness>0.113607</defaultDozeBrightness>
+    <screenBrightnessRampFastDecrease>0.20</screenBrightnessRampFastDecrease>
+    <screenBrightnessRampFastIncrease>0.20</screenBrightnessRampFastIncrease>
+    <screenBrightnessRampSlowDecrease>0.20</screenBrightnessRampSlowDecrease>
+    <screenBrightnessRampSlowIncrease>0.20</screenBrightnessRampSlowIncrease>
 </displayConfiguration>
