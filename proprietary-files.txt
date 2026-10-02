@@ -1824,3 +1824,5 @@ odm/etc/wifi/peach/regdb.bin
 odm/etc/wifi/peach/regdb_version
 odm/vendor/etc/wifi/WCNSS_qcom_cfg.ini
 
+# ALS correction profile
+my_product/etc/fusionlight_profile/fusionlight_Main_2_4.json:odm/etc/fusionlight_profile/fusionlight_Main_2_4.json
