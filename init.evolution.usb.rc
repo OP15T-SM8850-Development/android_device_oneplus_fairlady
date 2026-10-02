@@ -1,0 +1,22 @@
+# Bring up a minimal ADB gadget before zygote-start. The normal Qualcomm gadget
+# setup runs at zygote-start/boot, which may never be reached during a boot hang.
+on post-fs-data && property:ro.build.type=userdebug
+    setprop persist.sys.usb.config adb
+    mount configfs none /config
+    mkdir /config/usb_gadget/g1 0770 system usb
+    mkdir /config/usb_gadget/g1/strings/0x409 0770 system usb
+    mkdir /config/usb_gadget/g1/configs/b.1 0770 system usb
+    mkdir /config/usb_gadget/g1/configs/b.1/strings/0x409 0770 system usb
+    mkdir /config/usb_gadget/g1/functions/ffs.adb 0770 system usb
+    write /config/usb_gadget/g1/idVendor 0x18d1
+    write /config/usb_gadget/g1/idProduct 0x4ee7
+    write /config/usb_gadget/g1/bcdUSB 0x0200
+    write /config/usb_gadget/g1/strings/0x409/serialnumber ${ro.serialno}
+    write /config/usb_gadget/g1/strings/0x409/manufacturer OnePlus
+    write /config/usb_gadget/g1/strings/0x409/product fairlady
+    mkdir /dev/usb-ffs/adb 0770 shell system
+    mount functionfs adb /dev/usb-ffs/adb uid=2000,gid=1000,rmode=0770,fmode=0660
+    setprop sys.usb.controller ${vendor.usb.controller}
+    wait /sys/class/udc/${vendor.usb.controller} 10
+    setprop sys.usb.configfs 1
+    setprop sys.usb.config adb
