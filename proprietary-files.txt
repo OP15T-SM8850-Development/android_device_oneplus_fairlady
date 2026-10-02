@@ -814,6 +814,7 @@ odm/etc/camera/gm_tcs3449_golden
 odm/etc/camera/main_inv_mapxy_33x25.bin
 odm/etc/camera/main_mapxy_33x25.bin
 odm/etc/camera/media_profiles.xml
+odm/etc/camera/media_profiles.xml:odm/etc/media_profiles_fairlady.xml;TRYSRCFIRST
 odm/etc/camera/model_fdc.data
 odm/etc/camera/mtStereoParams.bin
 odm/etc/camera/mtStereoParams_far.bin
@@ -1822,3 +1823,6 @@ odm/etc/wifi/peach/bdwlan.elf
 odm/etc/wifi/peach/regdb.bin
 odm/etc/wifi/peach/regdb_version
 odm/vendor/etc/wifi/WCNSS_qcom_cfg.ini
+
+# ALS correction profile
+my_product/etc/fusionlight_profile/fusionlight_Main_2_4.json:odm/etc/fusionlight_profile/fusionlight_Main_2_4.json
