@@ -4,6 +4,10 @@
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
+    <!-- Use LineageOS proximity-on-wake and the independent UDFPS/AOD protection. -->
+    <bool name="config_pocketModeSupported">false</bool>
+    <string name="config_pocketBridgeSysfsInpocket" translatable="false"></string>
+
     <!-- Identify VOOC/SuperVOOC charging using the Oplus charging driver. -->
     <bool name="config_hasVoocCharger">true</bool>
     <string name="config_oemFastChargerStatusPath" translatable="false">/sys/class/oplus_chg/battery/voocchg_ing</string>
