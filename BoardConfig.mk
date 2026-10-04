@@ -16,7 +16,7 @@ DEVICE_PATH := device/oneplus/fairlady
 TARGET_OTA_ASSERT_DEVICE := OP64DDL1
 
 # Display
-TARGET_SCREEN_DENSITY := 560
+TARGET_SCREEN_DENSITY := 608
 
 # Properties
 TARGET_ODM_PROP += $(DEVICE_PATH)/odm.prop
