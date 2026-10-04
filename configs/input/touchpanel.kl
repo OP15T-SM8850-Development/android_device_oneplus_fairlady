@@ -1,0 +1,7 @@
+# SPDX-License-Identifier: Apache-2.0
+# The stock fairlady touch service reports double tap as Linux KEY_F4.
+# Route it to the framework wake key instead of a keyboard function key.
+key 62    WAKEUP WAKE
+key 116   POWER
+key 142   SLEEP
+key 143   WAKEUP WAKE
