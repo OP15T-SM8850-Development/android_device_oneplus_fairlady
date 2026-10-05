@@ -29,3 +29,6 @@ TARGET_RECOVERY_UI_MARGIN_HEIGHT := 103
 
 # Include the proprietary files BoardConfig.
 include vendor/oneplus/fairlady/BoardConfigVendor.mk
+
+# Device-specific permissions for Kernel Manager.
+BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
