@@ -1,2 +1,9 @@
 soong_namespace {
 }
+
+prebuilt_etc {
+    name: "init.fairlady.kernel-manager.rc",
+    src: "init.fairlady.kernel-manager.rc",
+    sub_dir: "init",
+    vendor: true,
+}

@@ -1,0 +1,3 @@
+# KGSL devfreq is a symlink to this platform device. Label the target, not
+# only /sys/class/devfreq, so frequency bounds can be accessed in Enforcing.
+genfscon sysfs /devices/platform/soc/3d00000.qcom,kgsl-3d0/devfreq u:object_r:vendor_sysfs_devfreq:s0
