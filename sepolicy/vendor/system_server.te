@@ -5,3 +5,6 @@ allow system_server sysfs_devices_system_cpu:file rw_file_perms;
 r_dir_file(system_server, vendor_sysfs_kgsl)
 r_dir_file(system_server, vendor_sysfs_devfreq)
 allow system_server vendor_sysfs_devfreq:file rw_file_perms;
+
+# Verify that the vendor kernel post-boot script reached its completion marker.
+get_prop(system_server, vendor_mpctl_prop)
