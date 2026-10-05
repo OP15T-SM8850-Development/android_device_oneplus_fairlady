@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- CPU policies and governors are discovered from the kernel, without a
+     hard-coded cluster topology. KGSL exports GPU frequencies in Hz. -->
+<kernel-manager>
+    <gpu node="/sys/class/kgsl/kgsl-3d0/devfreq"
+         currentNode="/sys/class/kgsl/kgsl-3d0/gpuclk"
+         usageNode="/sys/class/kgsl/kgsl-3d0/gpubusy"
+         frequencyMultiplier="1" />
+</kernel-manager>

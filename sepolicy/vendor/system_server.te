@@ -1,0 +1,7 @@
+# Kernel Manager runs inside system_server. Restrict DAC write access in init
+# to the frequency bounds and governor files used by the manager.
+r_dir_file(system_server, sysfs_devices_system_cpu)
+allow system_server sysfs_devices_system_cpu:file rw_file_perms;
+r_dir_file(system_server, vendor_sysfs_kgsl)
+r_dir_file(system_server, vendor_sysfs_devfreq)
+allow system_server vendor_sysfs_devfreq:file rw_file_perms;

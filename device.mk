@@ -155,3 +155,8 @@ PRODUCT_COPY_FILES += \
     device/oneplus/fairlady/vibrator/stock/809/def/effect_8.bin:$(TARGET_COPY_OUT_ODM)/etc/vibrator/809/def/effect_8.bin \
     device/oneplus/fairlady/vibrator/stock/809/def/effect_9.bin:$(TARGET_COPY_OUT_ODM)/etc/vibrator/809/def/effect_9.bin \
     device/oneplus/fairlady/vibrator/stock/vibrator_effect.json:$(TARGET_COPY_OUT_ODM)/etc/vibrator/vibrator_effect.json
+
+# Kernel Manager
+PRODUCT_PACKAGES += init.fairlady.kernel-manager.rc
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/kernel/ax_kernel_manager.xml:$(TARGET_COPY_OUT_VENDOR)/etc/ax_kernel_manager.xml
