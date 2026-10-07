@@ -12,6 +12,11 @@ include device/oneplus/sm8850-common/BoardConfigCommon.mk
 
 DEVICE_PATH := device/oneplus/fairlady
 
+# Build the Qualcomm Wonder passthrough path used by Mosey/AirDrop.
+TARGET_KERNEL_BAZEL_EXTRA_FLAGS += --define=CONFIG_WONDER_SUPPORT=y
+TARGET_KERNEL_BAZEL_EXTRA_FLAGS += --//common-modules/wonder:wonder_kernel=//common:kernel_aarch64
+BOARD_VENDOR_KERNEL_MODULES_LOAD += wonder.ko
+
 # Assert
 TARGET_OTA_ASSERT_DEVICE := OP64DDL1
 

@@ -3,6 +3,9 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+# Include the native AirDrop backend before the common product selects GMS packages.
+TARGET_INCLUDE_MOSEY := true
+
 $(call inherit-product, device/oneplus/fairlady/lineage_fairlady.mk)
 
 PRODUCT_NAME := evolution_fairlady
