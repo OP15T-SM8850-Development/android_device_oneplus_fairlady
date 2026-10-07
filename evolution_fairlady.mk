@@ -3,6 +3,14 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+# Build without bundled root or call recording.
+WITH_SU := false
+TARGET_INCLUDE_BCR := false
+BUILD_BCR := false
+
+# An empty value disables insecure ADB; common.mk checks this with ifdef.
+WITH_ADB_INSECURE :=
+
 # Include the native AirDrop backend before the common product selects GMS packages.
 TARGET_INCLUDE_MOSEY := true
 
