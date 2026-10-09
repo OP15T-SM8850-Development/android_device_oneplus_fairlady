@@ -14,6 +14,9 @@ DEVICE_PATH := device/oneplus/fairlady
 
 # Build the Qualcomm Wonder passthrough path used by Mosey/AirDrop.
 TARGET_KERNEL_BAZEL_EXTRA_FLAGS += --define=CONFIG_WONDER_SUPPORT=y
+
+# Package only fairlady overlays, preserving their bootloader entry order.
+TARGET_KERNEL_BAZEL_EXTRA_FLAGS += --//vendor/oneplus/sm8850:dtbo_config=//vendor/oneplus/sm8850-devicetrees:fairlady_dtbo_config
 TARGET_KERNEL_BAZEL_EXTRA_FLAGS += --//common-modules/wonder:wonder_kernel=//common:kernel_aarch64
 BOARD_VENDOR_KERNEL_MODULES_LOAD += wonder.ko
 
