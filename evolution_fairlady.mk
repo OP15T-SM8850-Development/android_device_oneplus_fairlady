@@ -22,3 +22,9 @@ PRODUCT_DEVICE := fairlady
 PRODUCT_SOONG_NAMESPACES += \
     hardware/qcom-caf/wlan \
     hardware/qcom-caf/wlan/qcwcn
+
+# Partition-specific privileged permission allowlists for release enforcement.
+PRODUCT_COPY_FILES += \
+    device/oneplus/fairlady/configs/permissions/privapp-permissions-evolution-fairlady-system.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-evolution-fairlady.xml \
+    device/oneplus/fairlady/configs/permissions/privapp-permissions-evolution-fairlady-system_ext.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-evolution-fairlady.xml \
+    device/oneplus/fairlady/configs/permissions/privapp-permissions-evolution-fairlady-product.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-evolution-fairlady.xml

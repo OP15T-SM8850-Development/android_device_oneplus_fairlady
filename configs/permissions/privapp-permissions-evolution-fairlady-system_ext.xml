@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2026 Evolution X; SPDX-License-Identifier: Apache-2.0 -->
+<permissions>
+    <privapp-permissions package="com.android.systemui">
+        <permission name="android.permission.CHANGE_APP_IDLE_STATE" />
+        <permission name="android.permission.MANAGE_SMARTSPACE" />
+    </privapp-permissions>
+</permissions>
