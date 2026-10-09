@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2026 Evolution X; SPDX-License-Identifier: Apache-2.0 -->
+<permissions>
+    <privapp-permissions package="com.google.android.as">
+        <permission name="android.permission.MANAGE_SMARTSPACE" />
+    </privapp-permissions>
+    <privapp-permissions package="com.kieronquinn.app.smartspacer">
+        <permission name="android.permission.SCHEDULE_EXACT_ALARM" />
+    </privapp-permissions>
+</permissions>
