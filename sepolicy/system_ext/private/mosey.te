@@ -1,0 +1,30 @@
+typeattribute mosey_server coredomain;
+
+# The optional framework adapter forwards to the original native service.
+allow { mosey_server system_server } mosey_service:service_manager { add find };
+neverallow { domain -mosey_server -system_server } mosey_service:service_manager add;
+
+binder_use(mosey_server)
+
+# Forward adapted requests to the unchanged native backend.
+binder_call(system_server, mosey_server)
+
+init_daemon_domain(mosey_server)
+
+r_dir_file(mosey_server, sysfs_net)
+
+allow mosey_server mosey_server:netlink_netfilter_socket create;
+allow mosey_server self:capability { net_admin net_raw };
+allow mosey_server self:netlink_route_socket { create nlmsg_getneigh nlmsg_read nlmsg_readpriv nlmsg_write read write };
+allow mosey_server self:netlink_generic_socket create_socket_perms;
+allow mosey_server self:packet_socket create_stream_socket_perms;
+allow mosey_server self:tun_socket create;
+allow mosey_server self:udp_socket { create ioctl };
+allow mosey_server self:unix_dgram_socket ioctl;
+allow mosey_server tun_device:chr_file rw_file_perms;
+
+allowxperm mosey_server self:netlink_generic_socket ioctl { SIOCETHTOOL SIOCGIFNAME };
+allowxperm mosey_server self:packet_socket ioctl { SIOCGIFFLAGS SIOCGIFHWADDR SIOCGIFINDEX };
+allowxperm mosey_server self:udp_socket ioctl { SIOCBONDINFOQUERY SIOCDEVPRIVATE_1 SIOCETHTOOL SIOCGIFFLAGS SIOCSIFFLAGS SIOCSIFADDR SIOCSIFHWADDR SIOCSIFMTU SIOCDIFADDR };
+allowxperm mosey_server self:unix_dgram_socket ioctl { SIOCBONDINFOQUERY SIOCETHTOOL SIOCGIFFLAGS SIOCSIFFLAGS };
+allowxperm mosey_server tun_device:chr_file ioctl { TUNGETIFF TUNSETIFF };

@@ -1,2 +1,5 @@
 # IFAA
 sys.oplus.ifaa.model=ONEPLUS-R24831
+
+# Use the system-permitted AirDrop channel for supported original Mosey versions in RU.
+ro.quickshare.channel149=true
