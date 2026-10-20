@@ -40,3 +40,6 @@ include vendor/oneplus/fairlady/BoardConfigVendor.mk
 
 # Device-specific permissions for Kernel Manager.
 BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
+
+# OnePlus camera
+include packages/features/OplusCamera/BoardConfig.mk

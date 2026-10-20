@@ -40,7 +40,10 @@ blob_fixups: blob_fixups_user_type = {
     'odm/etc/camera/CameraHWConfiguration.config': blob_fixup()
         # Disable face detection AE behaviour
         .regex_replace(r'(enableSWfdForThirdCamUnit += )TRUE', r'\1FALSE')
-        .regex_replace(r'(fdSupport += )TRUE;', r'\1FALSE;'),
+        .regex_replace(r'(fdSupport += )TRUE;', r'\1FALSE;')
+        # SAT smooth zoom otherwise waits for UI events from the Oplus cameraserver
+        # extension (sendOplusExtCamCmd) and ignores android.control.zoomRatio.
+        .regex_replace(r'(UseAIDLInput += )TRUE', r'\1FALSE'),
     'odm/etc/init/init.camera_process.rc': blob_fixup()
         .regex_replace('    delete_recursion', '    #delete_recursion'),
     (
@@ -70,10 +73,9 @@ blob_fixups: blob_fixups_user_type = {
     'vendor/etc/libnfc-nxp.conf': blob_fixup()
         .regex_replace('(NXPLOG_.*_LOGLEVEL)=0x03', '\\1=0x02')
         .regex_replace('NFC_DEBUG_ENABLED=1', 'NFC_DEBUG_ENABLED=0'),
-    (
-        'vendor/lib64/camera/components/com.qti.node.dewarp.so',
-        'vendor/lib64/vendor.qti.hardware.camera.offlinecamera-service-impl.so',
-    ): blob_fixup()
+    'vendor/lib64/camera/components/com.qti.node.dewarp.so': blob_fixup()
+        .replace_needed('android.hardware.graphics.allocator-V1-ndk.so', 'android.hardware.graphics.allocator-V2-ndk.so'),
+    'vendor/lib64/vendor.qti.hardware.camera.offlinecamera-service-impl.so': blob_fixup()
         .replace_needed('android.hardware.graphics.allocator-V1-ndk.so', 'android.hardware.graphics.allocator-V2-ndk.so'),
     (
         'vendor/lib64/camera/components/com.qti.node.fd.so',
