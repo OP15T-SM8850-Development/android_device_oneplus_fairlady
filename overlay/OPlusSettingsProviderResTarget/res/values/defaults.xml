@@ -6,4 +6,9 @@
 <resources>
     <!-- Default for Settings.Global.DEVICE_NAME $1=MODEL-->
     <string name="def_device_name_simple" translatable="false">OnePlus 15T</string>
+
+    <!-- Keep the hidden Secure.DOUBLE_TAP_TO_SLEEP gesture off; the
+         LineageOS double tap to sleep switch in Display settings is used.
+         Installed on product so it overrides PixelSettingsProvider. -->
+    <bool name="def_double_tap_to_sleep">false</bool>
 </resources>
