@@ -760,6 +760,7 @@ odm/etc/camera/pfb_bin/ThirdPartyPreSkintuneBinary.bin
 odm/etc/camera/pfb_bin/ThirdPartyPreSkintuneMRTBinary.bin
 odm/etc/camera/pfb_bin/ThirdPartyPreVertFilterBinary.bin
 odm/etc/camera/pfb_bin/ThirdPartyPreVertSurBinary.bin
+odm/etc/camera/singleblur/license_release.license
 odm/etc/camera/singleblur/personseg.bin
 odm/etc/camera/singleblur/preview_seg.json
 odm/etc/camera/sticker/material/animoji/data.zip
@@ -958,6 +959,9 @@ odm/lib64/bm6a81v08s14n80.bin
 odm/lib64/bm6a81v08s14n83.bin
 odm/lib64/bm6a81v08s14n85.bin
 odm/lib64/bm6a81v08s14n86.bin
+# OEM camera layer HAL module (ro.hardware.camera=oemlayer.v2). Without it the
+# provider falls back to camera.qcom and the Oplus CamX callbacks stay unset.
+odm/lib64/hw/camera.oemlayer.v2.so;DISABLE_CHECKELF;DISABLE_DEPS
 odm/lib64/camera.oemlayer.adapter.so
 odm/lib64/camera.oemlayer.healthmonitor.so
 odm/lib64/camera.oemlayer.logger.so
@@ -1826,3 +1830,31 @@ odm/vendor/etc/wifi/WCNSS_qcom_cfg.ini
 
 # ALS correction profile
 my_product/etc/fusionlight_profile/fusionlight_Main_2_4.json:odm/etc/fusionlight_profile/fusionlight_Main_2_4.json
+
+# Display gralloc - from stock 16.0.10.500, overrides the source-built QTI gralloc.
+# The source-built snapalloc does not match the stock camera blobs: the 4K video
+# snapshot stream never produces frames, live photos taken while recording fall
+# back to preview YUV with swapped chroma, and the offline camera service misreads
+# the buffer handle. Ship the whole stock allocator stack, snapalloc included.
+vendor/bin/hw/vendor.qti.hardware.display.allocator-service;DISABLE_CHECKELF;DISABLE_DEPS
+# Overriding the source gralloc drops its init_rc/vintf_fragments, but soong still
+# emits install rules for their original names, so ship the stock ones renamed.
+vendor/etc/init/vendor.qti.hardware.display.allocator-service.rc:vendor/etc/init/vendor.qti.hardware.display.allocator-service-stock.rc
+vendor/etc/vintf/manifest/mapper.qti.xml:vendor/etc/vintf/manifest/mapper.qti-stock.xml
+vendor/etc/vintf/manifest/vendor.qti.hardware.display.allocator-service.xml:vendor/etc/vintf/manifest/vendor.qti.hardware.display.allocator-service-stock.xml
+vendor/lib64/hw/android.hardware.graphics.mapper@4.0-impl-qti-display.so;DISABLE_CHECKELF;DISABLE_DEPS
+vendor/lib64/hw/mapper.qti.so;DISABLE_CHECKELF;DISABLE_DEPS
+vendor/lib64/libgralloc.qti.so;DISABLE_CHECKELF;DISABLE_DEPS
+vendor/lib64/libgralloccore.so;DISABLE_CHECKELF;DISABLE_DEPS
+vendor/lib64/libgrallocutils.so;DISABLE_CHECKELF;DISABLE_DEPS
+vendor/lib64/libmapperutils.so;DISABLE_CHECKELF;DISABLE_DEPS
+vendor/lib64/vendor.qti.hardware.display.snapalloc-impl.so;DISABLE_CHECKELF;DISABLE_DEPS
+
+# Camera algorithms that CamX nodes dlopen() by name, so they never showed up
+# as dependencies: the OFE SWDSCA local tone pass (libcamxofehwl), the feature2
+# ICC profile writer, the ML remosaic engine and the ML node backend. Without
+# them those passes are silently skipped.
+vendor/lib64/libdscaalgo.so;DISABLE_CHECKELF;DISABLE_DEPS
+vendor/lib64/libiccprofile.so;DISABLE_CHECKELF;DISABLE_DEPS
+vendor/lib64/libmlremosaicengine.so;DISABLE_CHECKELF;DISABLE_DEPS
+vendor/lib64/libmmfp.so;DISABLE_CHECKELF;DISABLE_DEPS

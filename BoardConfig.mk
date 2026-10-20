@@ -41,3 +41,8 @@ include vendor/oneplus/fairlady/BoardConfigVendor.mk
 # Device-specific permissions for Kernel Manager.
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/system_ext/private
 BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
+
+# Allow OEM Oplus camera vendor property prefixes (ro.oplus.*)
+BUILD_BROKEN_VENDOR_PROPERTY_NAMESPACE := true
+# Allow prebuilt ELF binaries copied directly into app lib directories
+BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
