@@ -71,6 +71,19 @@ PRODUCT_PACKAGES += \
 $(call soong_config_set,OPLUS_LINEAGE_VIBRATOR_HAL,USE_EFFECT_STREAM,true)
 $(call soong_config_set,OPLUS_LINEAGE_VIBRATOR_HAL,INCLUDE_DIR,$(LOCAL_PATH)/vibrator/effect)
 
+# Camera media profiles: sm8850-common ships another device's copy of
+# odm/etc/camera/media_profiles.xml and, being inherited first, would win the
+# duplicate PRODUCT_COPY_FILES destination. Install fairlady's own 16.0.10.500
+# profiles from here so they take precedence.
+PRODUCT_COPY_FILES += \
+    vendor/oneplus/fairlady/proprietary/odm/etc/camera/media_profiles.xml:$(TARGET_COPY_OUT_ODM)/etc/camera/media_profiles.xml
+
+# Display gralloc: the stock 16.0.10.500 allocator stack overrides the
+# source-built one, which used to pull these mapper extensions in.
+PRODUCT_PACKAGES += \
+    vendor.qti.hardware.display.mapperextensions@1.2.vendor \
+    vendor.qti.hardware.display.mapperextensions@1.3.vendor
+
 # Inherit from the common OEM chipset makefile.
 $(call inherit-product, device/oneplus/sm8850-common/common.mk)
 
@@ -167,3 +180,6 @@ PRODUCT_COPY_FILES += \
 
 # Enable the canoe LOW_POWER and DEVICE_IDLE profiles in powerhint.xml.
 $(call soong_config_set_bool,qtipower,power_saving_modes,true)
+
+# OnePlus camera
+$(call inherit-product, packages/features/OplusCamera/OplusCamera.mk)

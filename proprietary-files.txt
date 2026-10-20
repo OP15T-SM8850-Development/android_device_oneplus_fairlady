@@ -1826,3 +1826,23 @@ odm/vendor/etc/wifi/WCNSS_qcom_cfg.ini
 
 # ALS correction profile
 my_product/etc/fusionlight_profile/fusionlight_Main_2_4.json:odm/etc/fusionlight_profile/fusionlight_Main_2_4.json
+
+# Display gralloc - from stock 16.0.10.500, overrides the source-built QTI gralloc.
+# The source-built snapalloc does not match the stock camera blobs: the 4K video
+# snapshot stream never produces frames, live photos taken while recording fall
+# back to preview YUV with swapped chroma, and the offline camera service misreads
+# the buffer handle. Ship the whole stock allocator stack, snapalloc included.
+vendor/bin/hw/vendor.qti.hardware.display.allocator-service;DISABLE_CHECKELF;DISABLE_DEPS
+# Overriding the source gralloc drops its init_rc/vintf_fragments, but soong still
+# emits install rules for their original names, so ship the stock ones renamed.
+vendor/etc/init/vendor.qti.hardware.display.allocator-service.rc:vendor/etc/init/vendor.qti.hardware.display.allocator-service-stock.rc
+vendor/etc/vintf/manifest/mapper.qti.xml:vendor/etc/vintf/manifest/mapper.qti-stock.xml
+vendor/etc/vintf/manifest/vendor.qti.hardware.display.allocator-service.xml:vendor/etc/vintf/manifest/vendor.qti.hardware.display.allocator-service-stock.xml
+vendor/lib64/hw/android.hardware.graphics.mapper@4.0-impl-qti-display.so;DISABLE_CHECKELF;DISABLE_DEPS
+vendor/lib64/hw/mapper.qti.so;DISABLE_CHECKELF;DISABLE_DEPS
+vendor/lib64/libgralloc.qti.so;DISABLE_CHECKELF;DISABLE_DEPS
+vendor/lib64/libgralloccore.so;DISABLE_CHECKELF;DISABLE_DEPS
+vendor/lib64/libgrallocutils.so;DISABLE_CHECKELF;DISABLE_DEPS
+vendor/lib64/libmapperutils.so;DISABLE_CHECKELF;DISABLE_DEPS
+vendor/lib64/vendor.qti.hardware.display.snapalloc-impl.so;DISABLE_CHECKELF;DISABLE_DEPS
+
