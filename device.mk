@@ -181,3 +181,6 @@ $(call soong_config_set_bool,qtipower,power_saving_modes,true)
 
 # OnePlus camera
 $(call inherit-product, packages/features/OplusCamera/OplusCamera.mk)
+
+# Transparent proxy
+$(call inherit-product, packages/features/TPROXY/TPROXY.mk)
